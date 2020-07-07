@@ -11,7 +11,8 @@ constexpr int INF  = 0x3f3f3f3f;
 const long long mod=1e9+7;
 const long double PI = acos(-1);
 // }}} End Header
-
+//二重のbit全探索を行うプログラム
+/*----------------コーディングはここから！--------------*/
 int main() {
 	int h, w, k, ans = 0;
 	cin >> h >> w >> k;
