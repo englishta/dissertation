@@ -24,8 +24,8 @@ int main() {
 	for(int bitw=0; bitw<(1<<w); bitw++){
 		for(int bith=0; bith<(1<<h); bith++){
 			int sum = 0;
-			map<int, int> mh;
-			map<int, int> mw;
+			map<int, int> mh;//行で塗りつぶす番号(0～h-1)を記憶する
+			map<int, int> mw;//列で塗りつぶす番号(0～w-1)を記憶する
 			for(int i=0; i<h; i++){
 				if(bith&(1<<i)){
 					mh[i]++;
@@ -37,9 +37,9 @@ int main() {
 				}
 			}
 			rep(i,h){
-				if(mh[i]>0) continue;
+				if(mh[i]>0) continue;//塗りつぶした行の'#'をカウントしないように、ループをスキップする
 				rep(j,w){
-					if(mw[j]>0) continue;
+					if(mw[j]>0) continue;//塗りつぶした列の'#'をカウントしないように、ループをスキップする
 					if(a[i][j] == '#'){
 						sum++;
 					}
