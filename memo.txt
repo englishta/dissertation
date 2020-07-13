@@ -1,0 +1,7 @@
+デスクトップへのパス
+/mnt/c/Users/加藤正隆/Desktop/
+を　desk　で置き換えている
+
+ダウンロードへのパス
+/mnt/c/Users/加藤正隆/Downloads/
+を download で置き換えている
