@@ -21,4 +21,4 @@ The key's randomart image is:
 | . ..     o ..o.E|
 +----[SHA256]-----+
 testtestestest
-
+:e ++enc=cp932

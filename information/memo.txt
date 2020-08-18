@@ -1,3 +1,5 @@
+(っ ´-` c)ﾏｰ
+
 デスクトップへのパス
 /mnt/c/Users/加藤正隆/Desktop/
 を　desk　で置き換えている
@@ -5,3 +7,10 @@
 ダウンロードへのパス
 /mnt/c/Users/加藤正隆/Downloads/
 を download で置き換えている
+
+wifi 
+pass:x48cvf7sd47fv
+
+ipad
+mail:kato_masa1999ju373@icloud.com
+pass:35023911Ac03
