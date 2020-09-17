@@ -32,11 +32,6 @@ void main(void)
 	//ÉãÅ[Év
 	while(1){
 		int touch = AdRead(2);
-		if(cnt >= 4){
-			LED(3);
-			Mtr_Run_lv(0,0,0,0,0,0);//í‚é~
-			break;
-		}
 		if(touch < 500){
 			cnt++;
 			if(cnt >= 4){
