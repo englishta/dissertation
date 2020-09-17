@@ -33,11 +33,13 @@ void main(void)
 		int touch = AdRead(2);
 		if(touch < 500){
 			LED(2);//緑
-			Mtr_Run_lv(20000,20000,0,0,0,0);
-			Wait(3000);
-			Mtr_Run_lv(0,0,0,0,0,0);
+			Mtr_Run_lv(-20000,-20000,0,0,0,0);
+			Wait(2000);
+			Mtr_Run_lv(-20000,20000,0,0,0,0);
+			Wait(1000);
 		}else{
 			LED(1);//オレンジ点灯
+			Mtr_Run_lv(20000,20000,0,0,0,0);//前進
 		}
 		/*前進
 		Mtr_Run_lv(20000,20000,0,0,0,0);
