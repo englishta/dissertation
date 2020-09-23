@@ -37,16 +37,16 @@ void main(void)
 		
 		if(right > border && left < border){
 			LED(1);		//緑のLED点灯
-			Mtr_Run_lv(20000,0,0,0,0,0);//左だけ前進,時計回り
+			Mtr_Run_lv(-20000,0,0,0,0,0);//左だけ前進,時計回り
 		}else if(right < border && left > border){
 			LED(2);//オレンジのLED点灯
-			Mtr_Run_lv(0,20000,0,0,0,0);//右だけ前進,半時計回り
+			Mtr_Run_lv(0,-20000,0,0,0,0);//右だけ前進,半時計回り
 		}else if(right < border && left < border){
 			LED(3);//両方点灯
-			Mtr_Run_lv(20000,20000,0,0,0,0);//前進
+			Mtr_Run_lv(-20000,-20000,0,0,0,0);//前進
 		}else{
 			LED(3);
-			Mtr_Run_lv(20000,20000,0,0,0,0);//前進
+			Mtr_Run_lv(-20000,-20000,0,0,0,0);//前進
 		}
 	}
 }
