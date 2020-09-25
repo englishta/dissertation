@@ -34,15 +34,19 @@ void main(void)
 	
 	while(1){
 		const int border = 90;
+		const int border1 = 80;
 		int right = AdRead(0);
 		int left = AdRead(1);
-		
-		if(right > border){
+		if(right > border && left > border1){
+				Mtr_Run_lv(-10000, -10000,0,0,0,0);
+				Wait(100);
+		}
+		else if(right > border){
 			Mtr_Run_lv(10000, -10000,0,0,0,0);
 			Wait(100);
 			LED(1);
 		}
-		else if(left > border){
+		else if(left > border1){
 			Mtr_Run_lv(-10000, 10000,0,0,0,0);
 			Wait(100);
 			LED(2);
