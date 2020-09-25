@@ -33,18 +33,21 @@ void main(void)
 	//ƒ‹[ƒv
 	
 	while(1){
-		const int border = 500;
+		const int border = 90;
 		int right = AdRead(0);
 		int left = AdRead(1);
 		
 		if(right > border){
 			Mtr_Run_lv(10000, -10000,0,0,0,0);
 			Wait(100);
+			LED(1);
 		}
-		if(left > border){
+		else if(left > border){
 			Mtr_Run_lv(-10000, 10000,0,0,0,0);
 			Wait(100);
+			LED(2);
 		}else{
+			LED(3);
 			Mtr_Run_lv(0, 0,0,0,0,0);
 			Wait(100);
 			Mtr_Run_lv(-10000, -10000,0,0,0,0);
