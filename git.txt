@@ -1,0 +1,58 @@
+＜githubの使い方＞
+
+<コミットの仕方>
+
+cd Desktop
+cd storage
+
+git add .
+
+git commit -m "first commit"
+
+git push
+
+※現在いるブランチ上でしか変更されないことに注意。
+ブランチの居場所を確認してから、コミットする。
+
+<ブランチ関係の作成>
+
+git branch   //ブランチを確認
+
+git checkout -b develop master  //masterブランチからdevelopブランチを作成
+
+git checkout -b develop　//今いるブランチから作成する場合、最後の部分はいらない
+
+git push -u origin develop  //developブランチをリモートに登録
+
+
+<ブランチの切り替え>
+
+git checkout master  //git checkout (切り替えたいブランチ名)
+
+<マージの方法>
+
+masterブランチの変更点を、developブランチに更新する場合
+
+git checkout develop  //developブランチへ移動する
+
+git merge master　　//developへmergeの内容を保存
+
+git push origin develop  //その後、リモートリポジトリへ反映させる
+
+
+
+<ブランチの削除>
+git checkout *****     //削除するブランチではない場所に移動する。
+
+git branch -d develop　//developブランチの削除（ローカル上で）
+
+git push --delete origin develop  //developブランチの削除（リモート上で）
+
+
+
+
+
+
+
+
+
