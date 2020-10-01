@@ -49,8 +49,34 @@ git branch -d develop　//developブランチの削除（ローカル上で）
 git push --delete origin develop  //developブランチの削除（リモート上で）
 
 
+<python実行方法>
+これが万能
+python.exe py2.py
+
+＜その他＞
+python3 py2.py	　#python3での実行
+pypy3 py2.py      #pypy3での実行
+
+※グラフィックスは無理
 
 
+<jupyter notebook>
+パスワード：35023911
+
+詳しくはこのページへ
+http://backleaflet.blogspot.com/2018/01/jupyter-notebook-google-cloud-platform.html
+
+
+jupyter notebook --allow-root　#jupyter notebookを起動する
+
+<password>
+# vim /root/.jupyter/jupyter_notebook_config.json
+
+{
+  "NotebookApp": {
+    "password": "sha1:a9a9228d90be:e7302963654734a6f5aa014b9ebca1336065f66a"
+  }
+}
 
 
 
