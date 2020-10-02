@@ -63,11 +63,19 @@ pypy3 py2.py      #pypy3での実行
 <jupyter notebook>
 パスワード：35023911
 
+
+jupyter notebook --allow-root　#jupyter notebookを起動する
+表示されたリンクをクリックする
+
+
+#終了させる方法
+
+Ctrl+c
+5秒以内にy+Enter
+
 詳しくはこのページへ
 http://backleaflet.blogspot.com/2018/01/jupyter-notebook-google-cloud-platform.html
 
-
-jupyter notebook --allow-root　#jupyter notebookを起動する
 
 <password>
 # vim /root/.jupyter/jupyter_notebook_config.json
