@@ -1,3 +1,8 @@
+#data_nikkei.cvsのデータを読み取り、最大値、最小値、平均値を出力するプログラム
+#ちなみに、R言語と連携している、正直Pythonだけでも出来る
+#実行方法
+#python3 (name).py
+
 import pandas as pd
 import pyper
 r = pyper.R()
