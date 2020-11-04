@@ -87,6 +87,15 @@ http://backleaflet.blogspot.com/2018/01/jupyter-notebook-google-cloud-platform.h
 }
 
 
+マークダウン方式数式をTEX形式で挿入するとき、これを頭に入れる。
 
-
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ tex2jax: {
+ inlineMath: [["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+ }
+ });
+</script>
 
