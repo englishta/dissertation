@@ -1,14 +1,5 @@
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
-<script type="text/x-mathjax-config">
- MathJax.Hub.Config({
- tex2jax: {
- inlineMath: [["\\(","\\)"] ],
- displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
- }
- });
-</script>
-Nim言語でABC181を解いたコードと解説を載せていきます。  
-[https://atcoder.jp/contests/abc181:embed:cite]  
+Nim言語で[ABC181](https://atcoder.jp/contests/abc181)を解いたコードと解説を載せていきます。  
+[ABC181](https://atcoder.jp/contests/abc181)のリンクは、この青くなっているところをクリックしてください。  
 ## A問題 [Heavy Rotation](https://atcoder.jp/contests/abc181/tasks/abc181_a)  
 
 **問題文**  
@@ -17,7 +8,7 @@ Nim言語でABC181を解いたコードと解説を載せていきます。
 N 日後には何色の服を着るでしょうか？  
 **制約**  
 Nは整数である  
-$$1\leq N \leq 30$$  
+$1\leq N \leq 30$
 
 ```nim
 import strutils
@@ -64,13 +55,12 @@ N
 
 **制約**  
 入力はすべて整数  
-$$1\leq N \leq 10^5, 1\leq A_i \leq B_i \leq 10^6 $$
+$1\leq N \leq 10^5, 1\leq A_i \leq B_i \leq 10^6$
 
 解答のコードは以下の通りです。ただし、マクロの部分のコードを省略しています。  
 ```nim
 var sum = 0
 let N = read().parseInt
-
 for i in 0..<N:
     let a, b = read().parseInt
     sum += (a+b)*(b-a+1)div 2
