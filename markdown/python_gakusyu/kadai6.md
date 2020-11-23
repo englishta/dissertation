@@ -75,3 +75,22 @@ F検定では、Prob(F-statistic)=0.0487<0.05より、帰無仮説：回帰式�
 **参考文献**  
 [LiNGAM入門。気軽に因果関係を推定する(統計的因果探索)](https://qiita.com/tawash/items/73d570cdabebe863df67)  
 [Pythonによる因果推論と因果探索（初心者の方向け)](https://qiita.com/sugulu_Ogawa_ISID/items/2cffb239b44853b07f70)
+
+``` mermaid
+sequenceDiagram
+    participant NAME_A as 太郎
+    participant NAME_B as 花子
+    NAME_A->>NAME_B: 好き
+    NAME_B->>NAME_A: ちょっと好き
+```
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(-10, 10, 0.01)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+plt.plot(x, y_sin)
+plt.plot(x, y_cos)
+plt.show()
+```

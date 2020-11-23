@@ -57,45 +57,19 @@ python.exe py2.py
 python3 py2.py	　#python3での実行
 pypy3 py2.py      #pypy3での実行
 
-※グラフィックスは無理
+<Linux コマンド>
+ファイル圧縮
+zip -r aaaa.zip directory_name
+
+ファイル解凍
+unzip aaaa.zip
 
 
-<jupyter notebook>
-パスワード：35023911
 
 
-jupyter notebook --allow-root　#jupyter notebookを起動する
-表示されたリンクをクリックする
 
 
-#終了させる方法
-
-Ctrl+c
-5秒以内にy+Enter
-
-詳しくはこのページへ
-http://backleaflet.blogspot.com/2018/01/jupyter-notebook-google-cloud-platform.html
 
 
-<password>
-# vim /root/.jupyter/jupyter_notebook_config.json
 
-{
-  "NotebookApp": {
-    "password": "sha1:a9a9228d90be:e7302963654734a6f5aa014b9ebca1336065f66a"
-  }
-}
-
-
-マークダウン方式数式をTEX形式で挿入するとき、これを頭に入れる。
-
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
-<script type="text/x-mathjax-config">
- MathJax.Hub.Config({
- tex2jax: {
- inlineMath: [["\\(","\\)"] ],
- displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
- }
- });
-</script>
 
