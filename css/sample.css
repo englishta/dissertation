@@ -1,6 +1,19 @@
 h1{
   background-color:aquamarine; 
 }
-body{
+
+/* body {
+  font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-selif;
   background-color:ivory;
+} */
+
+div.blocka{
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+div.blockb{
+  float: right;
+  width: 50%;
+  text-align: center;
 }
