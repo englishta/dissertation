@@ -1,20 +1,29 @@
 
-<html>
-<head>
-<title>サンプル</title>
 <script>
-window.onload = function() {
-  setInterval(function() {
-    var dd = new Date();
-    document.getElementById("T1").innerHTML = dd.toLocaleString();
-  }, 1000);
+function func() {
+  var i;
+  if (document.F1.R1.length) {
+    for (i = 0; i < document.F1.R1.length; i++) {
+      if (document.F1.R1[i].checked) {
+          if(i%2 != 0){
+            alert(document.F1.R1[i].value+"は、当たりです！！");
+
+          }
+          else{
+            alert(document.F1.R1[i].value+"は、残念ながらはずれです！！");
+          }
+      }
+    }
+  } else {
+    if (document.F1.R1.checked) {
+      alert(document.F1.R1.value);
+    }
+  }
 }
 </script>
-</head>
-<body>
-<div id="T1"></div>
-</body>
-</html>
-
-
-<a href="javascript:alert('おふとん！！')">Click Me!!</a>
+<form name="F1" action="#">
+<input type="radio" name="R1" value="AAA" checked>AAA
+<input type="radio" name="R1" value="BBB">BBB
+<input type="radio" name="R1" value="CCC">CCC
+<input type="button" value="OK" onclick="func()">
+</form>
