@@ -27,7 +27,7 @@
 
         // アンダーバーの寸法など
         var paddleHeight = 10;
-        var paddleWidth = 90;
+        var paddleWidth = 100;
         var paddleX = (canvas.width-paddleWidth)/2;
 
         // ブロックの寸法など
@@ -101,10 +101,12 @@
                         if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                             dy = -dy;
                             b.status = 0;
+                            score++;
                         }
                         if(x_ > b.x && x_ < b.x+brickWidth && y_ > b.y && y_ < b.y+brickHeight) {
                             dy_ = -dy_;
                             b.status = 0;
+                            score++;
                         }
                     }
                 }
@@ -126,6 +128,11 @@
             ctx.fill();
             ctx.closePath();
         }
+        function drawScore(){
+            ctx.font = "26px Arial";
+            ctx.fillStyle = "green";
+            ctx.fillText("Score: "+score, 8, 300);
+        }
 
         // 描写の関数
         function draw() {
@@ -133,6 +140,7 @@
             drawBall();
             drawPaddle();
             collisionDetection();
+            drawScore();
             drawBricks();
             
             if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
