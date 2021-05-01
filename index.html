@@ -22,6 +22,8 @@
       var paddleHeight = 10;
       var paddleWidth = 75;
       var paddleX = (canvas.width-paddleWidth)/2;
+
+      // キーボードの操作に関する変数,ボタンが押されるとTrue
       var rightPressed = false;
       var leftPressed = false;
 
@@ -29,19 +31,19 @@
       document.addEventListener("keyup", keyUpHandler, false);
 
       function keyDownHandler(e) {
-          if(e.key == "Right" || e.key == "ArrowRight") {
+          if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
               rightPressed = true;
           }
-          else if(e.key == "Left" || e.key == "ArrowLeft") {
+          else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
               leftPressed = true;
           }
       }
 
       function keyUpHandler(e) {
-          if(e.key == "Right" || e.key == "ArrowRight") {
+          if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
               rightPressed = false;
           }
-          else if(e.key == "Left" || e.key == "ArrowLeft") {
+          else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
               leftPressed = false;
           }
       }
