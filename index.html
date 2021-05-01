@@ -11,116 +11,155 @@
   <body>
     <canvas id = "myCanvas" sidth="480" width="620" height="620"></canvas>
     <script>
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
-      var ballRadius = 10;
-      var x = canvas.width/2;
-      var y = canvas.height-30;
-      var x_ = canvas.width/2;
-      var y_ = canvas.height-30;
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var ballRadius = 10;
+        var x = canvas.width/2;
+        var y = canvas.height-30;
+        var x_ = canvas.width/2;
+        var y_ = canvas.height-30;
 
-      var dx = 4;
-      var dy = -4;
-      var dx_ = 4;
-      var dy_ = -3;
-      var score = 0;
+        var dx = 4;
+        var dy = -4;
+        var dx_ = 4;
+        var dy_ = -3;
+        var score = 0;
 
-      var paddleHeight = 10;
-      var paddleWidth = 90;
-      var paddleX = (canvas.width-paddleWidth)/2;
+        // アンダーバーの寸法など
+        var paddleHeight = 10;
+        var paddleWidth = 90;
+        var paddleX = (canvas.width-paddleWidth)/2;
 
+        // ブロックの寸法など
+        var brickRowCount = 3;
+        var brickColumnCount = 5;
+        var brickWidth = 75;
+        var brickHeight = 20;
+        var brickPadding = 10;
+        var brickOffsetTop = 30;
+        var brickOffsetLeft = 30;
+
+        // ブロックの初期化
+        var bricks = [];
+        for(var c=0; c<brickColumnCount; c++) {
+            bricks[c] = [];
+            for(var r=0; r<brickRowCount; r++) {
+                bricks[c][r] = { x: 0, y: 0 };
+            }
+        }
+
+        var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+        var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+
+        function drawBricks() {
+            for(var c=0; c<brickColumnCount; c++) {
+                for(var r=0; r<brickRowCount; r++) {
+                    var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                    var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
       // キーボードの操作に関する変数,ボタンが押されるとTrue
-      var rightPressed = false;
-      var leftPressed = false;
+        var rightPressed = false;
+        var leftPressed = false;
 
-      document.addEventListener("keydown", keyDownHandler, false);
-      document.addEventListener("keyup", keyUpHandler, false);
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
 
-      function keyDownHandler(e) {
-          if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
-              rightPressed = true;
-          }
-          else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
-              leftPressed = true;
-          }
-      }
+        function keyDownHandler(e) {
+            if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
+                rightPressed = true;
+            }
+            else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
+                leftPressed = true;
+            }
+        }
 
-      function keyUpHandler(e) {
-          if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
-              rightPressed = false;
-          }
-          else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
-              leftPressed = false;
-          }
-      }
+        function keyUpHandler(e) {
+            if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
+                rightPressed = false;
+            }
+            else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
+                leftPressed = false;
+            }
+        }
 
-      function drawBall() {
-          ctx.beginPath();
-          ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-          ctx.arc(x_, y_, ballRadius, 0, Math.PI*2);
-          
-          ctx.fillStyle = "#0095DD";
-          ctx.fill();
-          ctx.closePath();
-      }
-      function drawPaddle() {
-          ctx.beginPath();
-          ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-          ctx.fillStyle = "#0095DD";
-          ctx.fill();
-          ctx.closePath();
-      }
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+            ctx.arc(x_, y_, ballRadius, 0, Math.PI*2);
+            
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
 
-      function draw() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          drawBall();
-          drawPaddle();
-          
-          if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-              dx = -dx;
-          }
-          if(x_ + dx_ > canvas.width-ballRadius || x_ + dx_ < ballRadius) {
-              dx_ = -dx_;
-          }
-          if(y+dy < ballRadius){
-              dy = -dy;
-          }
-          if(y_+dy_ < ballRadius){
-              dy_ = -dy_;
-          }
-          if(y+dy > canvas.height-ballRadius){
-              if(x >= paddleX && x <= paddleX + paddleWidth){
-                  dy = -dy;
-              }else{
-                  alert("GAME OVER");
-                  document.location.reload();
-                  clearInterval(interval);
-              }
-          }
-          if(y_+dy_ > canvas.height-ballRadius){
-              if(x_ >= paddleX && x_ <= paddleX + paddleWidth){
-                  dy_ = -dy_;
-              }else{
-                  alert("GAME OVER");
-                  document.location.reload();
-                  clearInterval(interval);
-              }
-          }
-          
-          if(rightPressed && paddleX < canvas.width-paddleWidth) {
-              paddleX += 7;
-          }
-          else if(leftPressed && paddleX > 0) {
-              paddleX -= 7;
-          }
-          
-          x += dx;
-          y += dy;
-          x_ += dx_;
-          y_ += dy_;
-      }
+        // 描写の関数
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+            drawPaddle();
+            drawBricks();
+            
+            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            if(x_ + dx_ > canvas.width-ballRadius || x_ + dx_ < ballRadius) {
+                dx_ = -dx_;
+            }
+            if(y+dy < ballRadius){
+                dy = -dy;
+            }
+            if(y_+dy_ < ballRadius){
+                dy_ = -dy_;
+            }
+            if(y+dy > canvas.height-ballRadius){
+                if(x >= paddleX && x <= paddleX + paddleWidth){
+                    dy = -dy;
+                }else{
+                    alert("GAME OVER");
+                    document.location.reload();
+                    clearInterval(interval);
+                }
+            }
+            if(y_+dy_ > canvas.height-ballRadius){
+                if(x_ >= paddleX && x_ <= paddleX + paddleWidth){
+                    dy_ = -dy_;
+                }else{
+                    alert("GAME OVER");
+                    document.location.reload();
+                    clearInterval(interval);
+                }
+            }
+            
+            if(rightPressed && paddleX < canvas.width-paddleWidth) {
+                paddleX += 7;
+            }
+            else if(leftPressed && paddleX > 0) {
+                paddleX -= 7;
+            }
+            
+            x += dx;
+            y += dy;
+            x_ += dx_;
+            y_ += dy_;
+        }
 
-      var interval = setInterval(draw, 10);
+        var interval = setInterval(draw, 10);
 
     </script>
   </body>
