@@ -1,29 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ohutn Game</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+  </head>
+  <body>
+    <canvas id = "myCanvas" sidth="480" height="320"></canvas>
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      var x = canvas.width/2;
+      var y = canvas.height-30;
+      var dx = 2;
+      var dy = -2;
+      var ballRadius=10
 
-<script>
-function func() {
-  var i;
-  if (document.F1.R1.length) {
-    for (i = 0; i < document.F1.R1.length; i++) {
-      if (document.F1.R1[i].checked) {
-          if(i%2 != 0){
-            alert(document.F1.R1[i].value+"は、当たりです！！");
 
-          }
-          else{
-            alert(document.F1.R1[i].value+"は、残念ながらはずれです！！");
-          }
+      function drawBall() {
+          ctx.beginPath();
+          ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+          ctx.fillStyle = "#0095DD";
+          ctx.fill();
+          ctx.closePath();
       }
-    }
-  } else {
-    if (document.F1.R1.checked) {
-      alert(document.F1.R1.value);
-    }
-  }
-}
-</script>
-<form name="F1" action="#">
-<input type="radio" name="R1" value="おふとん日和" checked>おふとん日和
-<input type="radio" name="R1" value="Ibaraki Univ">Ibaraki Univ
-<input type="radio" name="R1" value="もふもふの毛布">もふもふの毛布
-<input type="button" value="OK" onclick="func()">
-</form>
+
+      function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawBall();
+          if(y+dy<ballRadius || y+dy>canvas.height-ballRadius){
+            dy = -dy;
+          }
+          if(x+dx<ballRadius || x+dx > canvas.width-ballRadius){
+            dx = -dx;
+          }
+          x += dx;
+          y += dy;
+      }
+      setInterval(draw, 10); 
+    </script>
+  </body>
+</html>
