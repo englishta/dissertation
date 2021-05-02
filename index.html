@@ -3,13 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <title>ohutn Game</title>
+
     <style>
     	* { padding: 0; margin: 0; }
     	canvas { background: #eee; display: block; margin: 0 auto; }
+        .explain_rule{ margin-left: 30px; margin-top: 10px; }
+        .tweet_share{ margin-left: 20px; margin-top: 20px; }
     </style>
+
   </head>
   <body>
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class = "explain_rule">
+        <font size = "5">操作方法</font><br>
+        <font size = "4">
+        <ol>
+            <li>パソコンで操作して下さい。</li>
+            <li>→のキーで右に移動します。←のキーで左に移動します。</li>
+            <li>ボールを地面に落とさないようにしながら、上のブロックを全て壊してください。</li>
+        </ol>
+        </font>
+    </div>
+    <div class = "tweet_share">
+        <font size = "4">ボタンを押して、Twitterでシェアしてみよう！<br></font>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    
     <canvas id = "myCanvas" sidth="480" width="620" height="620"></canvas>
     <script>
         var canvas = document.getElementById("myCanvas");
