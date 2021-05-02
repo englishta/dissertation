@@ -28,7 +28,7 @@
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
     
-    <canvas id = "myCanvas" sidth="480" width="620" height="720"></canvas>
+    <canvas id = "myCanvas" sidth="480" width="620" height="620"></canvas>
     <script>
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
@@ -38,14 +38,14 @@
         var x_ = canvas.width/2;
         var y_ = canvas.height-30;
         
-        var dx = Math.round(Math.random()*2)+1;
-        var dy = -1*(Math.round(Math.random()*2)+1);
-        // var dx = 4; // ボール1の移動速度
-        // var dy = -4;
-        var dx_ = -1*(Math.round(Math.random()*2)+1);
-        var dy_ = -1*(Math.round(Math.random()*2)+1);
-        // var dx_ = -3; // ボール2の移動速度
-        // var dy_ = -3;
+        // var dx = Math.round(Math.random()*2)+1;
+        // var dy = -1*(Math.round(Math.random()*2)+1);
+        var dx = 4; // ボール1の移動速度
+        var dy = -4;
+        // var dx_ = -1*(Math.round(Math.random()*2)+1);
+        // var dy_ = -1*(Math.round(Math.random()*2)+1);
+        var dx_ = -3; // ボール2の移動速度
+        var dy_ = -3;
 
         var dx_b = 2; // ブロックの移動速度
         var dy_b = 2;
