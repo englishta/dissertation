@@ -19,10 +19,14 @@
         var x_ = canvas.width/2;
         var y_ = canvas.height-30;
 
-        var dx = 4;
+        var dx = 4; // ボール1の移動速度
         var dy = -4;
-        var dx_ = 4;
+        var dx_ = 4; // ボール2の移動速度
         var dy_ = -3;
+        var dx_b = 2; // ブロックの移動速度
+        var dy_b = 2;
+        var brick_move_x = 0; // ブロックの移動距離x
+        var brick_move_y = 0; // ブロックの移動距離y
         var score = 0;
 
         // アンダーバーの寸法など
@@ -56,8 +60,8 @@
                 for(var r=0; r<brickRowCount; r++) {
                     // ブロックが消去済みであれば描写しない
                     if(bricks[c][r].status == 0) continue;
-                    var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-                    var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                    var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft+brick_move_x;
+                    var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop+brick_move_y;
                     bricks[c][r].x = brickX;
                     bricks[c][r].y = brickY;
                     ctx.beginPath();
@@ -185,6 +189,10 @@
             y += dy;
             x_ += dx_;
             y_ += dy_;
+            if(brick_move_y > 130 || brick_move_y < -15) dy_b = -dy_b;
+            if(brick_move_x > 20 || brick_move_x < -20) dx_b = -dx_b;
+            brick_move_x += dx_b;
+            brick_move_y += dy_b;
         }
 
         var interval = setInterval(draw, 10);
