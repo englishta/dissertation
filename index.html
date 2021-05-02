@@ -96,6 +96,15 @@
                 leftPressed = false;
             }
         }
+        function congratulation(){
+            if(score == 15){
+                alert("おめでとうございます！！ ゲームクリアです！！");
+                document.location.reload();
+                clearInterval(interval);
+            }
+
+        }
+
         // ブロックに衝突するかを調べる
         function collisionDetection() {
             for(var c=0; c<brickColumnCount; c++) {
@@ -115,6 +124,7 @@
                     }
                 }
             }
+            if(score == 15) congratulation();
         }
         function drawBall() {
             ctx.beginPath();
