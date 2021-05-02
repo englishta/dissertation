@@ -37,11 +37,16 @@
         var y = canvas.height-30;
         var x_ = canvas.width/2;
         var y_ = canvas.height-30;
+        
+        var dx = Math.round(Math.random()*5);
+        var dy = -1*(Math.round(Math.random()*4)+2);
+        // var dx = 4; // ボール1の移動速度
+        // var dy = -4;
+        var dx_ = -1*(Math.round(Math.random()*5));
+        var dy_ = -1*(Math.round(Math.random()*4)+2);
+        // var dx_ = -3; // ボール2の移動速度
+        // var dy_ = -3;
 
-        var dx = 4; // ボール1の移動速度
-        var dy = -4;
-        var dx_ = -3; // ボール2の移動速度
-        var dy_ = -3;
         var dx_b = 2; // ブロックの移動速度
         var dy_b = 2;
         var brick_move_x = 0; // ブロックの移動距離x
