@@ -21,7 +21,7 @@
 
         var dx = 4; // ボール1の移動速度
         var dy = -4;
-        var dx_ = 4; // ボール2の移動速度
+        var dx_ = -3; // ボール2の移動速度
         var dy_ = -3;
         var dx_b = 2; // ブロックの移動速度
         var dy_b = 2;
@@ -199,7 +199,7 @@
             y += dy;
             x_ += dx_;
             y_ += dy_;
-            if(brick_move_y > 200 || brick_move_y < -15) dy_b = -dy_b;
+            if(brick_move_y > 130 || brick_move_y < -15) dy_b = -dy_b;
             if(brick_move_x > 20 || brick_move_x < -20) dx_b = -dx_b;
             brick_move_x += dx_b;
             brick_move_y += dy_b;
