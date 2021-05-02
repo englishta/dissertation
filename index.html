@@ -51,11 +51,14 @@
         var dy_b = 2;
         var brick_move_x = 0; // ブロックの移動距離x
         var brick_move_y = 0; // ブロックの移動距離y
+        var last_brick_x = 0; // 最後のブロックの座標を記録
+        var last_brick_y = 0;
         var score = 0;
 
         // アンダーバーの寸法など
         var paddleHeight = 10;
         var paddleWidth = 100;
+        // var paddleWidth = 650; //テスト用
         var paddleX = (canvas.width-paddleWidth)/2;
 
         // ブロックの寸法など
@@ -134,6 +137,10 @@
             for(var c=0; c<brickColumnCount; c++) {
                 for(var r=0; r<brickRowCount; r++) {
                     var b = bricks[c][r];
+                    if(score >= 14 && b.status == 1){
+                        last_brick_x = b.x;
+                        last_brick_y = b.y;
+                    }
                     if(b.status == 1){
                         if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                             dy = -dy;
@@ -223,10 +230,29 @@
             y += dy;
             x_ += dx_;
             y_ += dy_;
-            if(brick_move_y > 130 || brick_move_y < -15) dy_b = -dy_b;
-            if(brick_move_x > 20 || brick_move_x < -20) dx_b = -dx_b;
-            brick_move_x += dx_b;
-            brick_move_y += dy_b;
+            if(score >= 14){// 最後の一つになったら、大きく動く
+                if(brick_move_y > 400 || brick_move_y < -15) dy_b = -dy_b;
+                if(brick_move_x > 300 || brick_move_x < -20) dx_b = -dx_b;
+                var mht_distance1 = Math.abs(x-last_brick_x)+Math.abs(y-last_brick_y);
+                var mht_distance2 = Math.abs(x_-last_brick_x)+Math.abs(y_-last_brick_y);
+                if(mht_distance1<100 || mht_distance2<100){
+                    if(mht_distance1 > Math.abs(x-(last_brick_x+dx_b))+Math.abs(y-(last_brick_y+dy_b)) || mht_distance1 > Math.abs(x_-(last_brick_x+dx_b))+Math.abs(y_-(last_brick_y+dy_b))){
+                        dx_b = -dx_b;
+                        dy_b = -dy_b;
+                    }else{
+                        brick_move_x += 2*dx_b;
+                        brick_move_y += 2*dy_b;
+                    }
+                }else{
+                    brick_move_x += dx_b;
+                    brick_move_y += dy_b;
+                }
+            }else{
+                if(brick_move_y > 130 || brick_move_y < -15) dy_b = -dy_b;
+                if(brick_move_x > 20 || brick_move_x < -20) dx_b = -dx_b;
+                brick_move_x += dx_b;
+                brick_move_y += dy_b;
+            }
         }
 
         var interval = setInterval(draw, 10);
