@@ -124,12 +124,9 @@
             }
         }
         function congratulation(){
-            if(score == 15){
-                alert("おめでとうございます！！ ゲームクリアです！！");
-                document.location.reload();
-                clearInterval(interval);
-            }
-
+            alert("おめでとうございます！！ ゲームクリアです！！");
+            document.location.reload();
+            clearInterval(interval);
         }
 
         // ブロックに衝突するかを調べる
@@ -138,24 +135,24 @@
                 for(var r=0; r<brickRowCount; r++) {
                     var b = bricks[c][r];
                     if(score >= 14 && b.status == 1){
-                        last_brick_x = b.x;
-                        last_brick_y = b.y;
+                        last_brick_x = b.x+brickWidth/2;
+                        last_brick_y = b.y+brickHeight/2;
                     }
                     if(b.status == 1){
                         if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                             dy = -dy;
-                            b.status = 0;
+                            if(score<14) b.status = 0; //最後のブロックは消さない
                             score++;
                         }
                         if(x_ > b.x && x_ < b.x+brickWidth && y_ > b.y && y_ < b.y+brickHeight) {
                             dy_ = -dy_;
-                            b.status = 0;
+                            if(score<14) b.status = 0; //最後のブロックは消さない
                             score++;
                         }
                     }
                 }
             }
-            if(score == 15) congratulation();
+            if(score >=18) congratulation();
         }
         function drawBall() {
             ctx.beginPath();
@@ -177,6 +174,9 @@
             ctx.font = "26px Arial";
             ctx.fillStyle = "green";
             ctx.fillText("Score: "+score, 8, 300);
+        }
+        function mht(x1, y1, x2, y2){
+            return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
         }
 
         // 描写の関数
@@ -231,22 +231,32 @@
             x_ += dx_;
             y_ += dy_;
             if(score >= 14){// 最後の一つになったら、大きく動く
-                if(brick_move_y > 400 || brick_move_y < -15) dy_b = -dy_b;
-                if(brick_move_x > 300 || brick_move_x < -20) dx_b = -dx_b;
-                var mht_distance1 = Math.abs(x-last_brick_x)+Math.abs(y-last_brick_y);
-                var mht_distance2 = Math.abs(x_-last_brick_x)+Math.abs(y_-last_brick_y);
-                if(mht_distance1<100 || mht_distance2<100){
-                    if(mht_distance1 > Math.abs(x-(last_brick_x+dx_b))+Math.abs(y-(last_brick_y+dy_b)) || mht_distance1 > Math.abs(x_-(last_brick_x+dx_b))+Math.abs(y_-(last_brick_y+dy_b))){
+                if(brick_move_y > 450 || brick_move_y < -20) dy_b = -dy_b;
+                if(brick_move_x > 350 || brick_move_x < -20) dx_b = -dx_b;
+                // ブロックとボール1,2間のマンハッタン距離を求める
+                var mht_dist1 = mht(x, last_brick_x, y, last_brick_y); // 今のマンハッタン距離
+                var mht_dist2 = mht(x_, last_brick_x, y_, last_brick_y);
+                // var mht_dist_next1 = mht(x+dx, last_brick_x+dx_b, y+dy, last_brick_y+dy_b);
+                // var mht_dist_next2 = mht(x_+dx_, last_brick_x+dx_b, y_+dy_, last_brick_y+dy_b);
+                var mht_dist_next_x1 = mht(x+dx, last_brick_x+dx_b, y, last_brick_y); // 変化後のマンハッタン距離
+                var mht_dist_next_x2 = mht(x_+dx_, last_brick_x+dx_b, y_, last_brick_y);
+                var mht_dist_next_y1 = mht(x, last_brick_x, y+dy, last_brick_y+dy_b); // 変化後のマンハッタン距離
+                var mht_dist_next_y2 = mht(x_, last_brick_x, y_+dy_, last_brick_y+dy_b);
+                
+                if(mht_dist1<100 || mht_dist2<100){
+                    if(mht_dist1 > mht_dist_next_x1 || mht_dist2 > mht_dist_next_x2){
                         dx_b = -dx_b;
-                        dy_b = -dy_b;
                     }else{
                         brick_move_x += 2*dx_b;
+                    }
+                    if(mht_dist1 > mht_dist_next_y1 || mht_dist2 > mht_dist_next_y2){
+                        dy_b = -dy_b;
+                    }else{
                         brick_move_y += 2*dy_b;
                     }
-                }else{
-                    brick_move_x += dx_b;
-                    brick_move_y += dy_b;
                 }
+                brick_move_x += dx_b;
+                brick_move_y += dy_b;
             }else{
                 if(brick_move_y > 130 || brick_move_y < -15) dy_b = -dy_b;
                 if(brick_move_x > 20 || brick_move_x < -20) dx_b = -dx_b;
@@ -254,9 +264,7 @@
                 brick_move_y += dy_b;
             }
         }
-
         var interval = setInterval(draw, 10);
-
     </script>
   </body>
 </html>
