@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>ohutn Game</title>
-
+    <title>Test TensorFlow.js</title>
     <style>
     	* { padding: 0; margin: 0; }
         canvas { background: rgb(12, 12, 12); display: block; margin: 0 auto; }
-        .explain_rule{ margin-left: 30px; margin-top: 10px; }
-        .tweet_share{ margin-left: 20px; margin-top: 20px; }
     </style>
-
   </head>
+
   <body>
     <div class = "explain_rule">
         <font size = "5">地球の回転</font><br>
@@ -25,45 +21,8 @@
         <font size = "4">ボタンを押して、Twitterでシェアしてみよう！<br></font>
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
-    
     <canvas id = "myCanvas" sidth="480" width="620" height="620"></canvas>
-    <script>
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        var r = 200.0;
-        var r2 = 90.0;
-        var omega = Math.PI/200.0;
-        var omega2 = Math.PI/100.0;
-        var ballRadius = 15;
-        var ballRadius2 = 12;
-        var x = canvas.width/2; var y = canvas.height/2-r;// 地球
-        var x2 = canvas.width/2; var y2 = canvas.height/2-r-r2;// 惑星
-        var cx = canvas.width/2;
-        var cy = canvas.height/2;
-        var t = 0;
 
-        function drawball(){
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.beginPath();
-            ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-            ctx.arc(x2, y2, ballRadius2, 0, Math.PI*2);
-            ctx.arc(cx, cy, ballRadius, 0, Math.PI*2);
-            ctx.fillStyle = "#0095DD";
-            ctx.fill();
-            ctx.closePath();
-        }
-        // 描写の関数
-        function draw() {
-            drawball();
-            x = r*Math.cos(omega*t)+cx;
-            y = r*Math.sin(omega*t)+cy;
-            x2 = r2*Math.cos(omega2*t)+x;
-            y2 = r2*Math.sin(omega2*t)+y;
-            t+=1
-            if(t>1000000) t = 0; //オーバーフロー対策
-        }
-        var interval = setInterval(draw, 10);
-        
-    </script>
+    <script src = "JavaScript/sarcle.js"></script>
   </body>
 </html>
