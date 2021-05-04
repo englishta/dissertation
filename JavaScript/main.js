@@ -75,21 +75,21 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
-if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
-    rightPressed = true;
-}
-else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
-    leftPressed = true;
-}
+    if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
+        rightPressed = true;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
+        leftPressed = true;
+    }
 }
 
 function keyUpHandler(e) {
-if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
-    rightPressed = false;
-}
-else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
-    leftPressed = false;
-}
+    if(e.key == "Right" || e.key == "ArrowRight" || e.key == "l") {
+        rightPressed = false;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "j") {
+        leftPressed = false;
+    }
 }
 function congratulation(){
     alert("おめでとうございます！！ ゲームクリアです！！");
@@ -99,28 +99,28 @@ function congratulation(){
 
 // ブロックに衝突するかを調べる
 function collisionDetection() {
-for(var c=0; c<brickColumnCount; c++) {
-    for(var r=0; r<brickRowCount; r++) {
-        var b = bricks[c][r];
-        if(score >= 14 && b.status == 1){
-            last_brick_x = b.x+brickWidth/2;
-            last_brick_y = b.y+brickHeight/2;
-        }
-        if(b.status == 1){
-            if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-                dy = -dy;
-                if(score<14) b.status = 0; //最後のブロックは消さない
-                score++;
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            if(score >= 14 && b.status == 1){
+                last_brick_x = b.x+brickWidth/2;
+                last_brick_y = b.y+brickHeight/2;
             }
-            if(x_ > b.x && x_ < b.x+brickWidth && y_ > b.y && y_ < b.y+brickHeight) {
-                dy_ = -dy_;
-                if(score<14) b.status = 0; //最後のブロックは消さない
-                score++;
+            if(b.status == 1){
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    if(score<14) b.status = 0; //最後のブロックは消さない
+                    score++;
+                }
+                if(x_ > b.x && x_ < b.x+brickWidth && y_ > b.y && y_ < b.y+brickHeight) {
+                    dy_ = -dy_;
+                    if(score<14) b.status = 0; //最後のブロックは消さない
+                    score++;
+                }
             }
         }
     }
-}
-if(score >=18) congratulation();
+    if(score >=18) congratulation();
 }
 function drawBall() {
     ctx.beginPath();
