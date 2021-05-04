@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test TensorFlow.js</title>
+  </head>
+
+  <body>
+    <img id="img" src="number.jpg"></img>
+    <p id="result" style="font-size: 20pt;"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+
+    <script>
+      "use strict";
+      console.log(tf.version)
+      tf.loadLayersModel("./conv_mnist_tfjs/model.json").then(model => {
+      // tf.loadLayersModel("https://iwatake2222.github.io/tfjs_study/mnist/conv_mnist_tfjs/model.json").then(model => {
+        console.log(model.input.shape);
+        const MODEL_HEIGHT  = model.input.shape[1];
+        const MODEL_WIDTH   = model.input.shape[2];
+        const MODEL_CHANNEL = model.input.shape[3];
+
+        /* Read image and convert into tensor */
+        const img_org = document.getElementById('img');
+        let inputTensor = tf.browser.fromPixels(img_org, 3);  // get rgb (without alpha)
+
+        /* Resize to model input size (28x28) */
+        inputTensor = inputTensor.resizeBilinear([MODEL_HEIGHT, MODEL_WIDTH])
+
+        /* Convert to grayscale (keep dimension(HWC))*/
+        inputTensor = inputTensor.mean(2, true);
+
+        /* Reverse black and white */
+        inputTensor = tf.sub(255, inputTensor);  
+
+        /* 0.0 - 1.0 */
+        inputTensor = inputTensor.cast("float32").div(tf.scalar(255));
+
+        /* expand dimension (HWC ->  NHWC) */
+        inputTensor = inputTensor.expandDims();
+
+        /* Inference */
+        // scores = model.execute(inputTensor, "output_scores");
+        const scores = model.predict(inputTensor).dataSync();
+
+        /* Post process */
+        const maxScoreIndex = tf.argMax(scores).arraySync();
+
+        /* Display result */
+        console.log(scores);
+        document.getElementById("result").innerHTML = "Number: " + maxScoreIndex + " (" + scores[maxScoreIndex].toFixed(3) + ")";
+
+      });
+    </script>
+  </body>
+</html>
