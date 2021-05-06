@@ -3,16 +3,28 @@
  
 <head>
     <meta charset="UTF-8">
+    <style>
+        .size-input-name {width: 16em; height: 2em;}
+        .size-input-message {width: 50em; height: 3em; }
+    </style>
 </head>
- 
+
 <body>
-    <p><%=name %> さんからの伝言です</p>
-    <p><%=message %></p>
+    <h2>メッセージ送信フォーム</h2>
+    <br>
     <form action="/" method="post">
-        <input type="text" name="name" value="名前">
-        <input type="text" name="message" value="伝言">
+        <input type="text" name="name" placeholder="名前" class = "size-input-name">
+        <hr>
+        <input type="text" name="message" placeholder="メッセージ" class = "size-input-message">
+        <hr>
         <button type="submit" name="button">送信</button>
     </form>
+    <br>
+    <h2>送信内容</h2>
+    <ul>
+        <li>名前：<%=name %></li>
+        <li>メッセージ：<%=message %></li>
+    </ul>
 </body>
- 
+
 </html>

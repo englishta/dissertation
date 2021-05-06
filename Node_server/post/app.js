@@ -13,11 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.get("/", (req, res) => {
     res.render("./index.ejs",
         {
-            name: 'None',
-            message: 'None'
+            name: '未送信',
+            message: '未送信'
         })
 });
- 
+
 app.post("/", (req, res) => {
     res.render('index.ejs', {
         name: req.body.name,
